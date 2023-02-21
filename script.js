@@ -1,0 +1,26 @@
+setInterval(setclock,1000);
+
+
+const hourHand = document.querySelector('.hour')
+const minuteHand = document.querySelector('.minute')
+const secondHand = document.querySelector('.second')
+
+function setclock(){
+    //拿到日期
+    const currentDate = new Date();
+    const secondsRatio = currentDate.getSeconds()/60;//zao
+    // console.log(currentDate.getSeconds);
+    const minutesRatio = (currentDate.getSeconds()/60+currentDate.getMinutes())/60;
+    const hoursRatio = (minutesRatio+currentDate.getHours())/12;
+    setRotation(secondHand,secondsRatio);
+    setRotation(minuteHand,minutesRatio);
+    setRotation(hourHand,hoursRatio);
+
+}
+
+//实现旋转
+function setRotation (element,rotationRatio) {
+    element.style.setProperty('--rotation',rotationRatio*360);
+}
+
+setclock()
